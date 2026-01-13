@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ISM Questions Quiz - Professional assessment platform for DevOps and Effort Estimation topics">
+    <title>ISM Quiz - After Midterm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
+
+    <!-- Welcome Screen -->
+    <div class="screen welcome-screen active" id="welcomeScreen">
+        <div class="welcome-container">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        <line x1="12" y1="6" x2="16" y2="6"></line>
+                        <line x1="12" y1="10" x2="16" y2="10"></line>
+                        <line x1="12" y1="14" x2="16" y2="14"></line>
+                        <line x1="8" y1="6" x2="8" y2="6"></line>
+                        <line x1="8" y1="10" x2="8" y2="10"></line>
+                        <line x1="8" y1="14" x2="8" y2="14"></line>
+                    </svg>
+                </div>
+            </div>
+            <h1 class="welcome-title">ISM Quiz</h1>
+            <p class="welcome-subtitle">After Midterm Assessment</p>
+            
+            <div class="stats-preview">
+                <div class="stat-card">
+                    <span class="stat-number" id="totalQuestions">64</span>
+                    <span class="stat-label">Questions</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="totalSections">2</span>
+                    <span class="stat-label">Sections</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Per Page</span>
+                </div>
+            </div>
+
+            <div class="sections-list" id="sectionsList">
+                <!-- Sections will be populated dynamically -->
+            </div>
+
+            <div class="previous-scores" id="previousScores">
+                <!-- Previous scores will be shown if available -->
+            </div>
+
+            <button class="btn btn-primary btn-large" id="startQuizBtn">
+                <span>Start Quiz</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+
+            <button class="btn btn-secondary" id="resetProgressBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="1 4 1 10 7 10"></polyline>
+                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                </svg>
+                <span>Reset Progress</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div class="screen quiz-screen" id="quizScreen">
+        <header class="quiz-header">
+            <div class="header-left">
+                <button class="btn btn-icon" id="backToHomeBtn" aria-label="Back to home">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </button>
+                <div class="section-badge" id="currentSectionBadge">DevOps</div>
+            </div>
+            <div class="header-center">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="progress-text" id="progressText">0/64</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="score-live">
+                    <span class="score-correct" id="liveCorrect">0</span>
+                    <span class="score-separator">:</span>
+                    <span class="score-incorrect" id="liveIncorrect">0</span>
+                    <span class="score-separator">/</span>
+                    <span class="score-total" id="liveTotal">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="quiz-main">
+            <div class="questions-container" id="questionsContainer">
+                <!-- Questions will be populated dynamically -->
+            </div>
+
+            <div class="pagination-container">
+                <button class="btn btn-pagination" id="prevPageBtn" disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    <span>Previous</span>
+                </button>
+                
+                <div class="page-indicators" id="pageIndicators">
+                    <!-- Page dots will be populated dynamically -->
+                </div>
+                
+                <button class="btn btn-pagination" id="nextPageBtn">
+                    <span>Next</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Results Screen -->
+    <div class="screen results-screen" id="resultsScreen">
+        <div class="results-container">
+            <div class="results-header">
+                <div class="trophy-icon" id="trophyIcon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                        <path d="M4 22h16"></path>
+                        <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                        <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                        <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                    </svg>
+                </div>
+                <h1 class="results-title">Quiz Complete!</h1>
+                <p class="results-subtitle" id="resultMessage">Great job!</p>
+            </div>
+
+            <div class="score-display">
+                <div class="score-circle" id="scoreCircle">
+                    <svg class="score-ring" viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#6366f1" />
+                                <stop offset="100%" stop-color="#8b5cf6" />
+                            </linearGradient>
+                        </defs>
+                        <circle class="score-ring-bg" cx="50" cy="50" r="45"/>
+                        <circle class="score-ring-fill" cx="50" cy="50" r="45" id="scoreRingFill" stroke="url(#gradient)"/>
+                    </svg>
+                    <div class="score-value">
+                        <span class="score-percentage" id="scorePercentage">0</span>
+                        <span class="score-percent-sign">%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-stats">
+                <div class="result-stat correct">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <div class="stat-info">
+                        <span class="stat-value" id="finalCorrect">0</span>
+                        <span class="stat-name">Correct</span>
+                    </div>
+                </div>
+                <div class="result-stat incorrect">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="15" y1="9" x2="9" y2="15"></line>
+                        <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                    <div class="stat-info">
+                        <span class="stat-value" id="finalIncorrect">0</span>
+                        <span class="stat-name">Incorrect</span>
+                    </div>
+                </div>
+                <div class="result-stat total">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    <div class="stat-info">
+                        <span class="stat-value" id="finalTotal">0</span>
+                        <span class="stat-name">Total</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-breakdown" id="sectionBreakdown">
+                <!-- Section breakdown will be populated dynamically -->
+            </div>
+
+            <div class="results-actions">
+                <button class="btn btn-primary btn-large" id="reviewAnswersBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <span>Review Answers</span>
+                </button>
+                <button class="btn btn-secondary" id="retakeQuizBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="1 4 1 10 7 10"></polyline>
+                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                    </svg>
+                    <span>Retake Quiz</span>
+                </button>
+                <button class="btn btn-ghost" id="homeFromResultsBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span>Back to Home</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Screen -->
+    <div class="screen review-screen" id="reviewScreen">
+        <header class="review-header">
+            <button class="btn btn-icon" id="backToResultsBtn" aria-label="Back to results">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </button>
+            <h2 class="review-title">Review Answers</h2>
+            <div class="review-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="correct">Correct</button>
+                <button class="filter-btn" data-filter="incorrect">Incorrect</button>
+            </div>
+        </header>
+        <main class="review-main" id="reviewContainer">
+            <!-- Review items will be populated dynamically -->
+        </main>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
