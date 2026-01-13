@@ -322,6 +322,13 @@ class QuizApp {
         document.getElementById('liveCorrect').textContent = correct;
         document.getElementById('liveIncorrect').textContent = answered - correct; // Show incorrect count
         document.getElementById('liveTotal').textContent = answered;
+        
+        // Update Vertical Score Bar
+        const scoreFill = document.getElementById('scoreVerticalFill');
+        if (scoreFill) {
+            const scorePercentage = total > 0 ? (correct / total) * 100 : 0;
+            scoreFill.style.height = `${scorePercentage}%`;
+        }
     }
 
     updatePagination() {

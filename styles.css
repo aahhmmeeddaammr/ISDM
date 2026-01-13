@@ -940,3 +940,230 @@ body {
     
     .stat-card { width: 100%; }
 }
+
+/* Score Sidebar Vertical Design */
+.score-sidebar {
+    position: fixed;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: row; /* Bar next to stats */
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: var(--bg-layer-2);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--duration-normal);
+}
+
+.score-sidebar:hover {
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary);
+}
+
+.score-progress-track {
+    width: 12px;
+    height: 200px;
+    background: var(--bg-layer-3);
+    border-radius: var(--radius-pill);
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.score-progress-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%; /* Dynamic */
+    background: var(--success-gradient);
+    border-radius: var(--radius-pill);
+    transition: height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.score-details-vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+    gap: 1.5rem;
+}
+
+.score-stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.score-stat-item.correct .stat-label { color: var(--success); }
+.score-stat-item.incorrect .stat-label { color: var(--error); }
+.score-stat-item.total .stat-label { color: var(--text-tertiary); }
+
+.score-stat-item .stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.score-stat-item.correct .stat-value { color: var(--success); }
+.score-stat-item.incorrect .stat-value { color: var(--error); }
+.score-stat-item.total .stat-value { color: var(--text-primary); }
+
+/* Hide specific elements on mobile if needed, or adjust Sidebar position */
+@media (max-width: 1200px) {
+    .score-sidebar {
+        left: 1rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .score-sidebar {
+        display: none; 
+    }
+}
+
+/* Sections List Styles - Modern & Premium */
+.sections-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    width: 100%;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.section-item {
+    background: var(--bg-layer-2);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    transition: all var(--duration-normal) var(--ease-squish);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.section-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--primary-gradient);
+    opacity: 0;
+    transition: opacity var(--duration-normal);
+}
+
+.section-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.section-item:hover::before {
+    opacity: 1;
+}
+
+.section-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--bg-layer-3);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    transition: all var(--duration-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    z-index: 1;
+}
+
+.section-item:hover .section-icon {
+    background: var(--primary);
+    color: white;
+    transform: rotate(-10deg) scale(1.1);
+    box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.5);
+}
+
+.section-info {
+    flex: 1;
+    z-index: 1;
+}
+
+.section-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+    transition: color var(--duration-fast);
+}
+
+.section-item:hover .section-name {
+    color: var(--primary);
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-count {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-count::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+}
+
+/* Enhanced Question Card */
+.question-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.8); /* Glass fallback */
+}
+
+/* Dark mode adjustment via data-theme selector if needed, 
+   but variables handle most. We can add specific overrides. */
+[data-theme="dark"] .section-item {
+    background: rgba(30, 41, 59, 0.6);
+}
+
+[data-theme="dark"] .question-card {
+    background: rgba(15, 23, 42, 0.6);
+}
+
+/* Add a subtle decorative background blob for sections */
+.section-item::after {
+    content: '';
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    width: 100px;
+    height: 100px;
+    background: var(--primary-gradient);
+    border-radius: 50%;
+    opacity: 0.05;
+    filter: blur(20px);
+    transition: transform var(--duration-normal);
+}
+
+.section-item:hover::after {
+    transform: scale(1.5);
+    opacity: 0.1;
+}
+

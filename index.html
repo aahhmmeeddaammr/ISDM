@@ -92,6 +92,28 @@
 
     <!-- Quiz Screen -->
     <div class="screen quiz-screen" id="quizScreen">
+        
+        <!-- Score Sidebar -->
+        <div class="score-sidebar">
+            <div class="score-progress-track">
+                <div class="score-progress-fill" id="scoreVerticalFill"></div>
+            </div>
+            <div class="score-details-vertical">
+                <div class="score-stat-item correct">
+                    <span class="stat-label">Correct</span>
+                    <span class="stat-value" id="liveCorrect">0</span>
+                </div>
+                <div class="score-stat-item incorrect">
+                    <span class="stat-label">Wrong</span>
+                    <span class="stat-value" id="liveIncorrect">0</span>
+                </div>
+                <div class="score-stat-item total">
+                    <span class="stat-label">Total</span>
+                    <span class="stat-value" id="liveTotal">0</span>
+                </div>
+            </div>
+        </div>
+
         <header class="quiz-header">
             <div class="header-left">
                 <button class="btn btn-icon" id="backToHomeBtn" aria-label="Back to home">
@@ -111,13 +133,7 @@
                 </div>
             </div>
             <div class="header-right">
-                <div class="score-live">
-                    <span class="score-correct" id="liveCorrect">0</span>
-                    <span class="score-separator">:</span>
-                    <span class="score-incorrect" id="liveIncorrect">0</span>
-                    <span class="score-separator">/</span>
-                    <span class="score-total" id="liveTotal">0</span>
-                </div>
+                <!-- Score moved to sidebar -->
             </div>
         </header>
 
